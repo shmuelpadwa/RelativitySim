@@ -8,7 +8,7 @@ import math
 
 import sys
 import time
-print ("Hello! Welcome to Shmu's amazing relativity simulator!!")
+print ("Hello! Welcome to Shmu and Kate's amazing relativity simulator!!")
 time.sleep(2)
 print ("Above your head, on Halloween night, you see a bat flying, very fast!\nYou stand at the origin")
 time.sleep(2)
