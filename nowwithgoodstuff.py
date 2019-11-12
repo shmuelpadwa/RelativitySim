@@ -14,10 +14,11 @@ print ("Above your head, on Halloween night, you see a bat flying, very fast!\nY
 time.sleep(2)
 beta = 0
 while beta > 1 or beta <= 0:
-    beta = input("Please enter your desired, velocity, in terms of c. Between zero and one. Don't include the c. \nAlso, once you've enjoyed this, type the speed as 1 to access the secret mode!\n")
+    beta = input("Please enter your desired velocity in terms of c. Between zero and one. Don't include the c. \nAlso, once you've enjoyed this, type the speed as 1 to access the secret mode!\n")
 if beta != 1:
     
     d = input("How far displaced from the acutal do you want the observed bat to be? For viewing purpose only. Recommended is 10 \n")
+    xd = input("How far do you want the bat to fly, in meters? Recommended is 200 for a long trip that allows you to see the extremes, or 50 for a quick journey that focuses on the important parts? Due to the y-axis' length, a distance of 50 will maintain the bat's proportions.\n")
     '''beta = 0.9999
     d = 20'''
     fig = plt.figure()
@@ -25,8 +26,8 @@ if beta != 1:
 
     def make_axes(p,q):
         axes = plt.gca()
-        axes.set_xlim([-200, 200])
-        axes.set_ylim([0, 50])
+        axes.set_xlim([-xd, xd])
+        axes.set_ylim([-50, 50])
         ''' the x limit and y limit of the axes can be changed as wished'''
     
         gamma = 1/math.sqrt(1-beta**2)
@@ -73,13 +74,13 @@ if beta != 1:
         #fig.canvas.draw()
         #fig.canvas.flush_events()
         #plt.show()
-        if p > 201:
+        if p > xd+1:
             plt.close()
         
             sys.exit(0)
         return axes
     plt.show(block=False)
-    for p in xrange(-200,202,2):
+    for p in xrange(-xd,xd+2,2):
         print('About to doit with %d' % p)
         ax = make_axes(p,20)
 
@@ -148,7 +149,7 @@ else:
         ax.set_xlim(0,data[:,:,0].shape[1])
         ax.set_ylim(0,data[:,:,0].shape[0])
         linebuilder = LineBuilder(line,ax,'red')
-        plt.gca().invert_yaxis()
+        #plt.gca().invert_yaxis()
         plt.show()
         new_shapes = change_shapes(linebuilder.shape)
         return new_shapes
@@ -156,12 +157,13 @@ else:
     img = np.zeros((20,20,3),dtype='uint')
     shapes = create_shape_on_image(img)[0]
     print(shapes)
-    beta = input("Please enter your desired, velocity, in terms of c. And please don't make the bat travel at c, because that isn't possible \n")
+    beta = input("Please enter your desired velocity in terms of c. And please don't make the bat travel at c, because that isn't possible \n")
     d = input("How far displaced from the acutal do you want the observed bat to be? For viewing purpose only. Recommended is 10 \n")
+    xd = input("How far do you want the bat to fly, in meters? Recommended is 200 for a long trip that allows you to see the extremes, or 50 for a quick journey that focuses on the important parts? Due to the y-axis' length, a distance of 50 will maintain the bat's proportions.\n")
     fig = plt.figure()
     def make_axes(p,q):
         axes = plt.gca()
-        axes.set_xlim([-50, 50])
+        axes.set_xlim([-xd, xd])
         axes.set_ylim([-50, 50])
     
         gamma = 1/math.sqrt(1-beta**2)
@@ -189,14 +191,14 @@ else:
         plt.fill(actshapex, actshapey, facecolor = 'black', edgecolor = 'navy')
         axes.plot(seeshapex, seeshapey, linewidth = 0)
         plt.fill(seeshapex, seeshapey, facecolor = 'lightsalmon', edgecolor = 'orange')
-        if p > 51:
+        if p > xd+1:
             plt.close()
             
             sys.exit(0)
         return axes
 
     plt.show(block=False)
-    for p in xrange(-50,52,2):
+    for p in xrange(-xd,xd+2,2):
         print('About to doit with %d' % p)
         ax = make_axes(p,20)
 
