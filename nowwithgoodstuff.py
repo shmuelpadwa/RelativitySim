@@ -193,7 +193,6 @@ else:
         plt.fill(seeshapex, seeshapey, facecolor = 'lightsalmon', edgecolor = 'orange')
         if p > xd+1:
             plt.close()
-            
             sys.exit(0)
         return axes
 
